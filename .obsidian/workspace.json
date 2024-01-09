@@ -1,0 +1,159 @@
+{
+  "main": {
+    "id": "3a7ebf4efd562540",
+    "type": "split",
+    "children": [
+      {
+        "id": "3fbceb0e11e7bfbe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1ac9848c326d58de",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2024-01-11-Mocking-없이-테스트-하기.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1157384c490a266e",
+    "type": "split",
+    "children": [
+      {
+        "id": "e2a71d4154be6301",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "29204ba90a17a0d7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1ceb5777488701f8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0f4a4afed8f571e6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "37fd090eee620621",
+    "type": "split",
+    "children": [
+      {
+        "id": "cce823c0739a6762",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3cf5dac0c2a0296f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "_posts/2024-01-11-Mocking-없이-테스트-하기.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "bd8bc5a67c1d474c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "_posts/2024-01-11-Mocking-없이-테스트-하기.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "ae55e91e20117797",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "b3187e12dfa9cd69",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "_posts/2024-01-11-Mocking-없이-테스트-하기.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:퀵 스위처 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 데일리 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false
+    }
+  },
+  "active": "29204ba90a17a0d7",
+  "lastOpenFiles": [
+    "스크린샷 2024-01-10 오전 12.36.43.png",
+    "_posts/2024-01-11-Mocking-없이-테스트-하기.md",
+    "_posts/2024-01-09-테스트-하기-좋은-코드란-무엇일까?.md",
+    "assets/img/posts/테스트-하기-좋은-코드란-무엇일까?/테스트-하기-어려운-코드.png",
+    "assets/img/posts/테스트-하기-좋은-코드란-무엇일까?",
+    "assets/img/posts",
+    "_posts/2024-01-09-1-오직-한-단계의-들여-쓰기만-허용한다.md"
+  ]
+}
