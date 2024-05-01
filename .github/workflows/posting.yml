@@ -3,7 +3,7 @@ name: Posting Update
 on:
   push:
     branches:
-      - main
+      - posting
 
 jobs:
   build-and-deploy:
