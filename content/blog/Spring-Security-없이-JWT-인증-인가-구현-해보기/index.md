@@ -1,8 +1,8 @@
 ---
-title: Record를 DTO로 사용해 보자
-description: Java의 Record를 이용하여 DTO를 보다 Immutable하게 관리 하는 법을 알아보자.
+title: Spring Security 없이 JWT 인증/인가 구현 해보기
+description: Spring Security를 사용하지 않고 JWT 인증/인가를 구현한 어느 주니어 개발자의 여행기.
 tags: [Tech]
-date: 2024-01-27
+date: 2024-02-12
 ---
 
 객체를 `Immutable` 하게 생성 하는 것으로 많은 장점을 가지게 됩니다.
