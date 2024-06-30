@@ -12,7 +12,9 @@
     "lint:fix": "eslint --fix src",
     "lint-staged": "lint-staged",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "repository": {
     "type": "git",
@@ -45,6 +47,7 @@
     "gatsby-source-filesystem": "^5.13.1",
     "gatsby-transformer-remark": "^6.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
+    "gh-pages": "^6.1.1",
     "katex": "^0.13.13",
     "prismjs": "^1.23.0",
     "query-string": "^7.0.1",
