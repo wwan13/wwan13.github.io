@@ -3,7 +3,7 @@ title: API 문서 배포를 자동화해보자.
 description: Spring Rest Docs와 OAS3을 이용해 API 문서 배포 자동화 구축 과정을 공유해 보자.
 tags: [Tech]
 date: 2024-08-02
-thumbnail: posting-thumbnaiil.png
+thumbnail: thumbnail.png
 ---
 
 API 문서는 개발된 백앤드 API를 프론트앤드 개발자애개 전달하기 위해 필수적입니다.  
