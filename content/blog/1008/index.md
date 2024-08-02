@@ -1,6 +1,6 @@
 ---
-title: API 문서 배포를 자동화 해보자. 
-description: Spring Rest Docs와 OAS3을 이용해 API 문서 배포 자동화 구축 과정을 공유해보자.
+title: API 문서 배포를 자동화해보자. 
+description: Spring Rest Docs와 OAS3을 이용해 API 문서 배포 자동화 구축 과정을 공유해 보자.
 tags: [Tech]
 date: 2024-08-02
 thumbnail: posting-thumbnaiil.png
@@ -8,36 +8,36 @@ thumbnail: posting-thumbnaiil.png
 
 API 문서는 개발된 백앤드 API를 프론트앤드 개발자애개 전달하기 위해 필수적입니다.  
 이때 문서를 직접 쓰며 발생하는 많은 비용을 줄이기 위해 `Swagger` 혹은 `Spring Rest Docs`를 이용해 API 문서를 제작하곤 합니다.  
-하지만 이 두 라이브러리들은 각각의 장,단점이 존재합니다. 이번 시간엔 제가 느낀 각 라이브러리들의 불편한 점과, 이를 해결하고 배포 자동화 시스템을 구축한 과정을 공유해 보려고 합니다.
+하지만 이 두 라이브러리들은 각각의 장, 단점이 존재합니다. 이번 시간엔 제가 느낀 각 라이브러리들의 불편한 점과, 이를 해결하고 배포 자동화 시스템을 구축한 과정을 공유해 보려고 합니다.
 
 <br/>
 
 ## Swagger 그리고 Spring Rest Docs
 
-Swagger와 Spring Rest Docs 모두 API 문서를 제작하기 위한 도구 입니다.  
+Swagger와 Spring Rest Docs 모두 API 문서를 제작하기 위한 도구입니다.  
 
 Swagger는 간단한 설정과, 어노테이션 만으로 문서를 보다 손쉽게 문서 제작을 할 수 있으며, 아래 Spring Rest Docs에 비해 깔끔한 UI를 제공합니다.  
 Spring Rest Docs는 테스트코드를 기반으로 API 문서를 제작하여 운영코드에 침투하지 않고, 테스트를 기반으로 하기 때문에 보다 신뢰도 높은 문서를 제작할 수 있다는 장점이 있습니다.
 
 <br/>
 
-하지만 이 두 라이브러리 모두 사용하면서 느낄 수 있는 치명적인 단점이 존재하였습니다.
+하지만 이 두 라이브러리 모두 사용하면서 느꼈던 치명적인 단점이 존재하였습니다.
 
 **Swagger**
 - 더욱 자세한 정보를 제공하려면 운영 코드(Controller, DTO 등)에 swagger와 관련된 어노테이션이 다수 추가된다.
 
 **Spring Rest Docs**
 - 매번 생성된 Snippet을 조합하는 과정이 필요하다.
-- 프로잭트애 많은 양의 html(api 문서)파일이 포함되어 그 크기가 비대해진다.
+- 프로잭트에 많은 양의 html(api 문서)파일이 포함되어 그 크기가 비대해진다.
 - 문서의 가독성이 swagger에 비해 떨어진다.
 
 <br/>
 
 따라서 저는 다음과 같은 조건을 가지는 API 문서 제작 도구가 필요하였습니다.
 - API 문서 관련 코드가 운영 코드에 침투하지 않아야 함.
-- 매번 Snippet을 조합하는 과정이 자동화 되어야 함, 혹은 없어야 함.
-- 프로젝트에 html 파일이 포함되면 안됨.
-- Swagger에 준하는 가독성을 가져야함.
+- 매번 Snippet을 조합하는 과정이 자동화되어야 함, 혹은 없어야 함.
+- 프로젝트에 html 파일이 포함되면 안 됨.
+- Swagger에 준하는 가독성을 가져야 함.
 
 <br/>
 
@@ -173,7 +173,7 @@ openapi3.json 파일 내부에는 우리가 Spring Rest Docs를 이용해 작성
 
 <br/>
 
-build.gradle.kts 애서 문서 제목, 설명, 서버 등 각종 기본 정보를 설정할 수 있지만 그 범위가 제한되고,   
+build.gradle.kts 에서 문서 제목, 설명, 서버 등 각종 기본 정보를 설정할 수 있지만 그 범위가 제한되고,   
 kotlin dsl 환경에선 두 개 이상의 서버 설정이 어렵기 때문에 여기선 설정하지 않고 이후에 다른 방법으로 메타 정보를 설정하겠습니다.
 
 <br/>
@@ -199,7 +199,7 @@ kotlin dsl 환경에선 두 개 이상의 서버 설정이 어렵기 때문에 �
 
 ## api-docs 저장소 셋업
 
-앞서 말씀드린 내용과 같이 Swagger 에서는 Swagger-Ui 를 이용해 OAS3 스펙의 파일을 시각화 하는 기능을 제공하고 있습니다.
+앞서 말씀드린 내용과 같이 Swagger 에서는 Swagger-Ui 를 이용해 OAS3 스펙의 파일을 시각화하는 기능을 제공하고 있습니다.
 
 ### index.html
 ```html
@@ -280,7 +280,7 @@ kotlin dsl 환경에선 두 개 이상의 서버 설정이 어렵기 때문에 �
 
 ## OAS3 추출, Issus 생성
 
-먼저 server 저장소의 docs 브랜치로 merge 될 때 openapi3.json을 추출하고, 그 내용울 담은 Issue를 생성해 주는 작업을 해야합니다.  
+먼저 server 저장소의 docs 브랜치로 merge 될 때 openapi3.json을 추출하고, 그 내용울 담은 Issue를 생성해 주는 작업을 해야 합니다.  
 shell, python 등의 선택지가 있었으나 python에 대한 이해도가 그나마 높기 때문에 python을 선택하였습니다.
 
 > 기능 동작에 초점을 두고 작성한 코드로, 코드의 품질이 좋지 않을 수 있습니다.
@@ -334,7 +334,7 @@ with open("./grida-core/core-api/build/api-spec/openapi3.json", "r") as oas:
 
 ### docs.yml
 
-docs 브랜치 병합시 동작하는 github actions 입니다.
+docs 브랜치 병합 시 동작하는 github actions 입니다.
 
 ~~~yml
 name: Docs
@@ -438,7 +438,7 @@ write_swagger_json(issue)
 ### update_api_docs.yml
 
 마지막 단계입니다.   
-동작할 스크립트도 구현되었으니 issue가 생성될 때 위 스크립트를 동작시켜줄 github action을 작성해 줍니다.
+동작할 스크립트도 구현되었으니 issue가 생성될 때 위 스크립트를 동작시켜 줄 github action을 작성해 줍니다.
 파이썬 스크립트를 통해 수정된 swagger.json의 내용을 원격 저장소로 commit-push 해주는 작업 또한 추가해 줍니다.
 
 ~~~ yml
