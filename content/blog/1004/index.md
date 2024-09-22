@@ -1,5 +1,5 @@
 ---
-title: spring filter를 interceptor로 바꿔보자
+title: spring filter를 interceptor로 바꿔보기.
 description: spring filter를 사용하며 불편했던 점을 interceptor로 바꾸며 해결해 보자.
 tags: [Tech]
 date: 2024-05-06

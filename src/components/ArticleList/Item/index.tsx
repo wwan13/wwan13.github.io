@@ -24,6 +24,7 @@ const ArticleListItem = ({ slug, title, description, date, thumbnail }: Props) =
         <Wrapper>
           <Thumbnail image={thumbnail} alt="Thumbnail" />
           <ContentWrapper>
+            <div>
             <Header>
               <Title>
                 <span itemProp='headline'>{title}</span>
@@ -37,7 +38,8 @@ const ArticleListItem = ({ slug, title, description, date, thumbnail }: Props) =
                 itemProp='description'
               />
             </Section>
-            {/* <Date>{date}</Date> */}
+            </div>
+            <Date>{date.split('T')[0]} · 김태완</Date>
             </ContentWrapper>
         </Wrapper>
       </Link>

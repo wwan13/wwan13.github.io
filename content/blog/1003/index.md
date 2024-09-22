@@ -1,5 +1,5 @@
 ---
-title: Spring Security 없이 JWT 인증/인가 구현 해보기
+title: Spring Security 없이 JWT 인증/인가 구현하는 방법.
 description: Spring Security를 사용하지 않고 JWT 인증/인가를 구현한 어느 주니어 개발자의 여행기.
 tags: [Tech]
 date: 2024-02-12

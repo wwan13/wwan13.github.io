@@ -149,7 +149,7 @@ export const Container = styled('div', {
   flexDirection: 'column',
   width: '100%',
   // maxWidth: '$contentWidth',
-  maxWidth: '768px',
+  maxWidth: '800px',
   margin: '0 auto',
   paddingRight: '1em',
   paddingLeft: '1em',

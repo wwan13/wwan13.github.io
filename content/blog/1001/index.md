@@ -1,5 +1,5 @@
 ---
-title: Record를 DTO로 사용해 보자
+title: Record를 DTO로 사용해 보기.
 description: Java의 Record를 이용하여 DTO를 보다 Immutable하게 관리 하는 법을 알아보자.
 tags: [Tech]
 date: 2024-01-27

@@ -1,5 +1,5 @@
 ---
-title: 복잡한 Spring Configuration을 더욱 쉽게 관리하는 법. (2)
+title: 복잡한 Spring Configuration을 더욱 쉽게 관리하기. (2)
 description: Configurer Pattern을 이용해 설정을 보다 편하게 만들어보자.
 tags: [Tech]
 date: 2024-05-13

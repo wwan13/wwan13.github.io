@@ -1,5 +1,5 @@
 ---
-title: API 문서 배포를 자동화해보자. 
+title: API 문서 배포를 자동화 하기.
 description: Spring Rest Docs와 OAS3을 이용해 API 문서 배포 자동화 구축 과정을 공유해 보자.
 tags: [Tech]
 date: 2024-08-02

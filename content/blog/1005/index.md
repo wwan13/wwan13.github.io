@@ -1,5 +1,5 @@
 ---
-title: 복잡한 Spring Configuration을 더욱 쉽게 관리 하는 법. (1)
+title: 복잡한 Spring Configuration을 더욱 쉽게 관리 하기. (1)
 description: Spring Auto Configuration을 알아보고 적용 해보자.
 tags: [Tech]
 date: 2024-05-11

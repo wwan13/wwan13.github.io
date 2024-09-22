@@ -1,6 +1,6 @@
 ---
-title: 어노테이션 기반 컨트롤러를 구현해보자.
-description: 소켓 메세지를 처리하는 컨트롤러를 어노테이션 기반의 컨트롤러로 구현해 보자.
+title: 어노테이션 기반 컨트롤러를 구현하는 방법.
+description: dispatcher-sorvlet 개발 이야기
 tags: [Tech]
 date: 2024-06-20
 thumbnail: thumbnail.png
