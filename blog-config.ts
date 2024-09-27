@@ -1,7 +1,7 @@
 const config = {
-  title: 'Wan.log',     // Blog name
-  author: 'wwan13', // Your name
-  description: '주니어 백앤드 개발자 김태완 입니다.',
+  title: 'Dev.log',     // Blog name
+  author: 'Taewan Kim', // Your name
+  description: '안녕하세요. 주니어 백앤드 개발자 김태완 입니다.',
   siteUrl: 'https://wwan13.github.io/',
   thumbnail: '/thumbnails/tech-blog-thumbnail.png',  // Default blog thumbnail. i.e. '/thumbnails/main.png'
   social: {
