@@ -2043,6 +2043,11 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
+"@rehype-pretty/transformers@^0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@rehype-pretty/transformers/-/transformers-0.13.2.tgz#10aa3eccf44a55c8721eaea74d4759e3fe522e7d"
+  integrity sha512-p2ciQSwqy5Ip8aNUa9q6rdS/hJZXrxHYYfDVOHvKOsBu3t9HDmQ65YX6r9Qbl19vi160OAxmGF7MIoCRDJrRhg==
+
 "@sideway/address@^4.1.5":
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.5.tgz#4bc149a0076623ced99ca8208ba780d65a99b9d5"

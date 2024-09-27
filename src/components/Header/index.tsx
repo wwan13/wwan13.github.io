@@ -19,7 +19,7 @@ const Header = ({ title, resetFilter }: Props) => {
           <Link to={'/'} onClick={resetFilter}>{title}</Link>
         </Title>
       </TitleWrapper>
-      <ThemeSwitch />
+      {/* <ThemeSwitch /> */}
     </Container>
   );
 };

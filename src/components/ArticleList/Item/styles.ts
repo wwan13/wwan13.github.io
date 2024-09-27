@@ -67,10 +67,11 @@ export const Wrapper = styled('div', {
 
 export const ContentWrapper = styled('div', {
   width: '488px',
-  height: '150px',
+  height: '140px',
   display: 'flex',
   flexDirection: "column", 
   justifyContent: "space-between",
+  marginTop: '5px'
   // margin: 'auto 0px auto 0px'
 })
 
