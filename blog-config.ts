@@ -8,7 +8,7 @@ const config = {
     github: 'wwan13',   // GitHub username
     twitter: '',        // Twitter username
     facebook: '',       // Facebook username
-    linkedin: '',       // LinkedIn username
+    linkedin: 'wwan13',       // LinkedIn username
     instagram: '',      // Instagram username
   },
   comment: {

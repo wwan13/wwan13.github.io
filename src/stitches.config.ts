@@ -16,11 +16,11 @@ export const { styled, css, getCssText, createTheme, globalCss } = createStitche
       yellow: '#ffd75e',
       yellowAccent: '#ffa659',
 
-      primary100: '#edeafc',
-      primary200: '#bcb2f5',
+      primary100: '#edfeafc',
+      primary200: '#AFD198',
       primary300: '#816eec',
-      primary400: '#3b1de2',
-      primary500: '#24128a',
+      primary400: '#698474',
+      primary500: '#FCF8F3',
 
       text100: '$gray300',
       text200: '$gray400',
@@ -34,8 +34,8 @@ export const { styled, css, getCssText, createTheme, globalCss } = createStitche
       borderPrimary: '$primary200',
 
       // inlineCodeBackground: '#404040',
-      inlineCodeBackground: '#F9F2F4',
-      inlineCodeColor: '#DF647C',
+      inlineCodeBackground: '#F5EFE6',
+      inlineCodeColor: '#698474',
       link: '$primary400',
 
       titleFilterBackground: '$gray100',
@@ -46,7 +46,7 @@ export const { styled, css, getCssText, createTheme, globalCss } = createStitche
 
       themeSwitchBackground: '$gray500',
 
-      titleHoverColor: '#6253B6',
+      titleHoverColor: '#6B8A7A',
     },
     sizes: {
       contentWidth: '43.75rem',
