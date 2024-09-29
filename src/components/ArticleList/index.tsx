@@ -23,6 +23,7 @@ const ArticleList = ({ posts }: Props) => {
         const description = post.frontmatter?.description ?? '';
         const date = post.frontmatter?.date ?? "";
         const thumbnail = getImage(post.frontmatter?.thumbnail?.childImageSharp?.gatsbyImageData)
+        const tags = post.frontmatter?.tags ?? "";
 
         return (
           <ArticleListItem
@@ -32,6 +33,7 @@ const ArticleList = ({ posts }: Props) => {
             description={description}
             date={date}
             thumbnail={thumbnail}
+            tags={tags}
           />
         );
       })}

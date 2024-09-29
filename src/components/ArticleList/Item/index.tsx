@@ -10,9 +10,10 @@ interface Props {
   description: string;
   date: String;
   thumbnail: any;
+  tags: any;
 }
 
-const ArticleListItem = ({ slug, title, description, date, thumbnail }: Props) => (
+const ArticleListItem = ({ slug, title, description, date, thumbnail, tags }: Props) => (
   <li key={slug}>
     <br/>
     <article
@@ -39,7 +40,7 @@ const ArticleListItem = ({ slug, title, description, date, thumbnail }: Props) =
               />
             </Section>
             </div>
-            <Date>{date.split('T')[0]} · 김태완</Date>
+            <Date>{date.split('T')[0]} · {tags}</Date>
             </ContentWrapper>
         </Wrapper>
       </Link>
