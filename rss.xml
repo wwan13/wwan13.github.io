@@ -1,4 +1,308 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Lavendar RSS Feed]]></title><description><![CDATA[안녕하세요. 주니어 백앤드 개발자 김태완 입니다.]]></description><link>https://wwan13.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 29 Sep 2024 14:51:39 GMT</lastBuildDate><item><title><![CDATA[API 문서에 오류코드 추가하기.]]></title><link>https://wwan13.github.io/1010/</link><guid isPermaLink="false">https://wwan13.github.io/1010/</guid><pubDate>Fri, 27 Sep 2024 00:00:00 GMT</pubDate><content:encoded></content:encoded></item><item><title><![CDATA[kotlin의 dsl로 spring rest docs를 개선하는 방법.]]></title><description><![CDATA[Spring에서 제공하는 API 문서 제작 도구 를 사용하다 보면 여려분은 다음과 같은 코드를 많이 접하게 될 것입니다. 흔히 볼 수 있는 코드이기에 전혀 이상함을 느끼지 못하는 분들도 계실 것입니다. 하지만 위와 같은 방법으로 직접 API…]]></description><link>https://wwan13.github.io/1009/</link><guid isPermaLink="false">https://wwan13.github.io/1009/</guid><pubDate>Sun, 22 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Spring에서 제공하는 API 문서 제작 도구 &lt;code class=&quot;language-text&quot;&gt;Spring Rest Docs&lt;/code&gt;를 사용하다 보면 여려분은 다음과 같은 코드를 많이 접하게 될 것입니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Lavendar RSS Feed]]></title><description><![CDATA[안녕하세요. 주니어 백앤드 개발자 김태완 입니다.]]></description><link>https://wwan13.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 29 Sep 2024 17:21:49 GMT</lastBuildDate><item><title><![CDATA[API 문서에 오류코드 추가하기.]]></title><description><![CDATA[API documentation is a technical content deliverable, containing instructions about how to effectively use and integrate with an API…]]></description><link>https://wwan13.github.io/1010/</link><guid isPermaLink="false">https://wwan13.github.io/1010/</guid><pubDate>Sun, 29 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;API documentation is a technical content deliverable, containing instructions about how to effectively use and integrate with an API.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;a href=&quot;https://swagger.io/blog/api-documentation/what-is-api-documentation-and-why-it-matters/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;swagger&lt;/a&gt; 에서는 API 문서를
+‘API를 효과적으로 사용하고 통합하는 방법에 대한 지침을 포함하는 기술 콘텐츠’로 API의 정보, 반환값, 요청값 등을 포함하고 있는 것으로 소개하고 있습니다.&lt;/p&gt;
+&lt;p&gt;하지만 이것들 만으로는 ‘API를 사용하며 발생할 수 있는 여러 &lt;strong&gt;예외 상황에 대한 지침&lt;/strong&gt;‘은 제공할 수 없습니다.&lt;/p&gt;
+&lt;p&gt;서버에서 발생하는 여러 예외에 대한 분기를 클라이언트가 처리하기 위해 &lt;code class=&quot;language-text&quot;&gt;Error Code&lt;/code&gt;를 반환하는 방법을 사용하곤 합니다.
+이번 포스팅에서는 제가 OAS3를 사용하는 API문서에 에러 코드를 추가한 방법에 대해 공유해 보겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;해당 포스팅은 &lt;a href=&quot;https://wwan13.github.io/1009/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;이전 포스팅&lt;/a&gt;에서 제작한 &lt;code class=&quot;language-text&quot;&gt;kotlin-dsl-rest-docs&lt;/code&gt;를 개선한 것으로 위 포스팅 혹은 &lt;a href=&quot;https://github.com/wwan13/kotlin-dsl-rest-docs&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;깃허브 저장소&lt;/a&gt;를 참고하여 주세요.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&quot;첫-번째-방법--모든-에러-코드를-담은-컨트롤러-추가하기&quot; style=&quot;position:relative;&quot;&gt;첫 번째 방법 : 모든 에러 코드를 담은 컨트롤러 추가하기&lt;a href=&quot;#%EC%B2%AB-%EB%B2%88%EC%A7%B8-%EB%B0%A9%EB%B2%95--%EB%AA%A8%EB%93%A0-%EC%97%90%EB%9F%AC-%EC%BD%94%EB%93%9C%EB%A5%BC-%EB%8B%B4%EC%9D%80-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0&quot; aria-label=&quot;첫 번째 방법  모든 에러 코드를 담은 컨트롤러 추가하기 permalink&quot; class=&quot;heading-anchor after&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;처음 알게 된 방법은 모든 에러 코드를 반환하는 컨트롤러를 테스트 코드에 추가하는 방법입니다.&lt;br&gt;
+&lt;em&gt;(직접 시도한 방법이 아니기 때문에 자세한 설명은 생략하겠습니다. &lt;a href=&quot;https://0soo.tistory.com/210&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;참고&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;ENUM.entries()&lt;/code&gt; 를 그대로 호출하기에 실수로 누락할 일도 없고, 한 눈에 모든 에러 코드를 확인할 수 있다는 장점이 있습니다.&lt;/p&gt;
+&lt;p&gt;하지만 저는 &lt;strong&gt;API별 호출시 발생 가능한 에러 코드들의 모음&lt;/strong&gt;을 원했기 때문에, 모든 API에 대한 에러 코드의 모음인 이 방법은 적절하지 못했습니다.&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&quot;두-번째-방법--예외-exampleschema추가하기&quot; style=&quot;position:relative;&quot;&gt;두 번째 방법 : 예외 Example(Schema)추가하기&lt;a href=&quot;#%EB%91%90-%EB%B2%88%EC%A7%B8-%EB%B0%A9%EB%B2%95--%EC%98%88%EC%99%B8-exampleschema%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0&quot; aria-label=&quot;두 번째 방법  예외 exampleschema추가하기 permalink&quot; class=&quot;heading-anchor after&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;두 번째 방법은 정상적인 API에 대한 문서를 제공하는 것과 동일한 방법으로 에외 케이스에 대한 테스트 코드를 작성하는 것입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token annotation builtin&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;`사용자 회원 가입 API error USER_ALREADY_EXISTS`&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    every &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; userService&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;appendUser&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; throws &lt;span class=&quot;token function&quot;&gt;CoreException&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ErrorType&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;USER_ALREADY_EXISTS&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; api &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; api&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/api/v1/user&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;requestBody&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;UserAppendRequest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token function&quot;&gt;documentFor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;api&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;user-sign-up-error(USER_ALREADY_EXISTS)&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;사용자 회원 가입 API error USER_ALREADY_EXISTS&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;requestFields&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;/span&gt; isTypeOf STRING whichMeans &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;이메일&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;nickname&quot;&lt;/span&gt;&lt;/span&gt; isTypeOf STRING whichMeans &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;닉네임&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token operator&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;responseFields&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;data.errorCode&quot;&lt;/span&gt;&lt;/span&gt; isTypeOf STRING whichMeans &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;발생한 에러 코드&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;data.errorMessage&quot;&lt;/span&gt;&lt;/span&gt; isTypeOf STRING whichMeans &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;발생한 에러 메세지&quot;&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;기존 테스트코드에 위와 같이 예외 상황을 포함하는 새로운 테스트케이스를 추가한 뒤 문서를 생성하면 다음과 같은 결과를 얻을 수 있습니다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8f5563f84a52a20c9ec0055d43befa37/0940f/image1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 64.55696202531645%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABkElEQVR42p2T63KkIBCFfZ2M4A0vIAKKo87ErcpW3v9dThqcH5NJdjOVH5/YFnU4nG6T5brDbxd0g0Vvx1+jjIMkErUuqCcHva3Ihx7ZHY/1v+BakcaI7jwjqf0YCzE6sF7RBn1gejCtnhYUo0UzT0hYL1H6Af59R7uOOCkBblpMrzuUn8G7DrlST4kGEq77KOjeNqirR2Yl2NCiJJdFcBpcB/QP3IST8ChI1E0LGqORNy3SrMIpL5EW1dNwJWNMCQ/KVEzzgk4PqPoOgmLIKoETI9HsAf49XHaHQ0EdLq2JJ7Dw8XbFVJLT7ithD5fyE4xyrpxB7aeQoUJDXbbXK4RzcUOhNcyFZtN7yHmOHO8ewlpyouL17slDXEQUFM5i2v/AbFvsaE4OFc1Ufz7fWKDmo65JkP9nnChDhcpQl88rpHcoyP6JQn4pSlrLuN6TlgKs+kpsSuwy2UzbBvv+hnV/hf07Y7jQ1XPqHiso8AfY94R5jV2OvxiNjVAapVQowqBrCrtp6OQaTDwH74+x+QCaTKoTDf8v7AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;image1&quot;
+        title=&quot;image1&quot;
+        src=&quot;/static/8f5563f84a52a20c9ec0055d43befa37/f058b/image1.png&quot;
+        srcset=&quot;/static/8f5563f84a52a20c9ec0055d43befa37/c26ae/image1.png 158w,
+/static/8f5563f84a52a20c9ec0055d43befa37/6bdcf/image1.png 315w,
+/static/8f5563f84a52a20c9ec0055d43befa37/f058b/image1.png 630w,
+/static/8f5563f84a52a20c9ec0055d43befa37/40601/image1.png 945w,
+/static/8f5563f84a52a20c9ec0055d43befa37/0940f/image1.png 1154w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;200을 반환하는 정상적인 반환값 아래, 400의 예외 상황을 반환하는 필드가 추가된 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/24883eff4053f35722ce0e5b6573651c/47aef/image2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 31.0126582278481%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABG0lEQVR42o2RW0/CQBSE+S0+ULTbbrvbCy3dbRELVgnxRlQuvkiiqYBE4+8fT1sS4+XBh29ncpKdM5ttyUxDVPQ1zLgLW8U1lTdCryFo6IQN1czqRbCT+BctRhdFqpBPJlCjEZyIwnwf59NbzB5XuJzNcbN8wPViiav5ovYX93PILP0ztFUNRaqRFgWS4RCe1jikwOnsDh/vO7xuSuy2a9IXvO22WJdPKJ9XiPNB/Qr+M7A6OIXqQY6on0GQZ66EwTgMi6NN2rGc2hukbZPjoGPiiLtgjvyCS1heQIGqBxYGOMkLjM7GiE9TqHEfThDAZA6Y7cK09uy9xQWp8x1azKRsGtrUqqtShEpD6hj+cQKRUFPh/R+XPsoP8AnvZ8oB9GsCGAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;image1&quot;
+        title=&quot;image1&quot;
+        src=&quot;/static/24883eff4053f35722ce0e5b6573651c/f058b/image2.png&quot;
+        srcset=&quot;/static/24883eff4053f35722ce0e5b6573651c/c26ae/image2.png 158w,
+/static/24883eff4053f35722ce0e5b6573651c/6bdcf/image2.png 315w,
+/static/24883eff4053f35722ce0e5b6573651c/f058b/image2.png 630w,
+/static/24883eff4053f35722ce0e5b6573651c/40601/image2.png 945w,
+/static/24883eff4053f35722ce0e5b6573651c/47aef/image2.png 1063w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;발생하는 예외가 여러 개인 경우 위와 같이 드롭다운을 통해 확인도 가능합니다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;하지만 이 방법에는 치명적인 단점이 존재하였습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9a721e29815b631cf287c4223c0c32b1/b5cea/invalid_examples.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 31.0126582278481%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtElEQVR42p3OzRKCIBQFYF6n/AVTwFRUKtQcJ+v9n+Wk6LRwUWOLb7gw3DOHmH5A3bRIshw8Lz5EoSBVac3z1vwnq/W026G8NSivxmYQM47oni8UZnpsW6immbRItYaXJAikhJ+nX5wRrOY7Ebq2y4lSdjlMU2uePc4XQvzAF1KA5PUF9/GBbKhAJYfjUxy90J67eBQujUCySsP0PeJyqs+i/UHbwDBeWh2ctVXA/uMzuOyEN6zuw1fIGjggAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;invalid_examples&quot;
+        title=&quot;invalid_examples&quot;
+        src=&quot;/static/9a721e29815b631cf287c4223c0c32b1/f058b/invalid_examples.png&quot;
+        srcset=&quot;/static/9a721e29815b631cf287c4223c0c32b1/c26ae/invalid_examples.png 158w,
+/static/9a721e29815b631cf287c4223c0c32b1/6bdcf/invalid_examples.png 315w,
+/static/9a721e29815b631cf287c4223c0c32b1/f058b/invalid_examples.png 630w,
+/static/9a721e29815b631cf287c4223c0c32b1/40601/invalid_examples.png 945w,
+/static/9a721e29815b631cf287c4223c0c32b1/b5cea/invalid_examples.png 1140w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Examples의 알 수 없는 정렬 조건으로 간혹 위와 같이 에러 케이스가 대표 예제로 설정되는 것이었습니다.&lt;br&gt;
+테스트 순서 조정, 에러 케이스의 앞에 특수문자 삽입 등 여러 방법을 시도해 보았으나 그 순서는 변하지 않았습니다.&lt;/p&gt;
+&lt;p&gt;사소한 문제로 넘어갈 수 있었지만, 프론트앤드 개발자가 잘못된 예제를 옳은 예제로 혼동할 가능성이 있다고 판단하여 이 방법도 사용하지 않기로 하였습니다.&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&quot;마지막-방법--description의-markdown문법-지원-활용&quot; style=&quot;position:relative;&quot;&gt;마지막 방법 : Description의 Markdown문법 지원 활용&lt;a href=&quot;#%EB%A7%88%EC%A7%80%EB%A7%89-%EB%B0%A9%EB%B2%95--description%EC%9D%98-markdown%EB%AC%B8%EB%B2%95-%EC%A7%80%EC%9B%90-%ED%99%9C%EC%9A%A9&quot; aria-label=&quot;마지막 방법  description의 markdown문법 지원 활용 permalink&quot; class=&quot;heading-anchor after&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;OAS3에는 API에 대한 자세한 설명을 더하기 위해 다음과 같은 Description 필드가 존재합니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a65212811a3870d1a3e4c1e7067aad82/1d69c/description_example.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 16.455696202531648%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAc0lEQVR42o3MSw7CIACEYe5/AG/hJdy6dmOqlRgptEWKlD5i6K/iBVh8mcwsRuxPG7sjHC4rUlkq5TnfLXXzQpqAcgt2gj5uRcTDvbnqgGzHfFA3ntuvm78uJGykmOjHRDssdH7NtJtymu+m3cwzJoaZYh+sG+T6LsAAJAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;description_example&quot;
+        title=&quot;description_example&quot;
+        src=&quot;/static/a65212811a3870d1a3e4c1e7067aad82/f058b/description_example.png&quot;
+        srcset=&quot;/static/a65212811a3870d1a3e4c1e7067aad82/c26ae/description_example.png 158w,
+/static/a65212811a3870d1a3e4c1e7067aad82/6bdcf/description_example.png 315w,
+/static/a65212811a3870d1a3e4c1e7067aad82/f058b/description_example.png 630w,
+/static/a65212811a3870d1a3e4c1e7067aad82/1d69c/description_example.png 750w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;단순 텍스트만 입력 가능한 줄 알았으나 놀랍게도 이 Description 필드에서 html과 markdown 를 모두 지원하고 있었습니다.&lt;br&gt;
+따라서 저는 이 필드와 마크다운을 이용해 에러 코드를 추가해 보자 하였습니다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h3 id=&quot;구현하기&quot; style=&quot;position:relative;&quot;&gt;구현하기&lt;a href=&quot;#%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0&quot; aria-label=&quot;구현하기 permalink&quot; class=&quot;heading-anchor after&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;우선 문서화 대상인 에러코드와 에러메세지를 담은 클래스 생성 뒤 kotlin-dsl-rest-docs의 컨셉에 맞게 infix 함수도 추가해 줍니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;infix&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;provideMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;message&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DocumentError &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;DocumentError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; message&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// EXAMPLE_ERROR_CODE provideMessage &quot;예시 에러 코드 입니다.&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;DocumentError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; code&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; String&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; message&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; String
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;선언한 에러코드들을 Desciption에서 사용할 수 있도록 MarkdonConverter라는 유틸 함수를 작성해 줍니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;object&lt;/span&gt; MarkdownConverter &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;convertErrors&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;errors&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; List&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;DocumentError&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; String &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&quot;
+            |
+            |### Error Codes
+            |
+            |&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;details&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+            |&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;summary&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; more &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;summary&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+            |
+            &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt;ErrorCode|ErrorMessage|
+            &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;|&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;|
+            |$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;errors&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;joinToString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;\n&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;|&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token expression&quot;&gt;it&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;code&lt;/span&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token expression&quot;&gt;it&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;message&lt;/span&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;|&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+            |
+            |&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;details&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+            |
+        &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&quot;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;trimMargin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;values&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; List&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;String&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; String &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; values&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;joinToString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;br/&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;기존 &lt;code class=&quot;language-text&quot;&gt;summary.description&lt;/code&gt;만 존재하던 필드에 마크다운으로 변환된 에러 코드를 추가해 줍니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// ApiDocumentContext&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; description&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; String
+    &lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; elements &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; mutableListOf&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;String&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;summary&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasDescription&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; elements&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;summary&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;description&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;errors&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isNotEmpty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; elements&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;MarkdownConverter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;convertErrors&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;errors&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; MarkdownConverter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;elements&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;나아가 API에 포함된 ENUM을 담은 &lt;code class=&quot;language-text&quot;&gt;DocumentEnum&lt;/code&gt;과, API 설명을 ul의 형식으로 할 수 있도록 &lt;code class=&quot;language-text&quot;&gt;DocumentGuide&lt;/code&gt;도 추가하였습니다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;그 결과 다음과 같이 테스트를 작성하면 필요했던 모든 정보를 담은 풍족한 API 문서가 생성되는 것을 볼 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token annotation builtin&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;`사용자 회원 가입 API`&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// ..&lt;/span&gt;
+
+    &lt;span class=&quot;token function&quot;&gt;documentFor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;api&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;user-sign-up&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;사용자 회원 가입 API&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;guide&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;사전에 호출한 oauth2 기본 프로필 조회 결과를 담아 회원가입 API를 호출해 주세요.&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;containedEnums&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;platform&quot;&lt;/span&gt;&lt;/span&gt; hasValues OauthPlatform&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;entries&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; it&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;gender&quot;&lt;/span&gt;&lt;/span&gt; hasValues Gender&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;entries&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; it&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;expectedError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;USER_400_0&quot;&lt;/span&gt;&lt;/span&gt; providesMessage &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;이미 사용중인 닉네임 입니다.&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;USER_400_1&quot;&lt;/span&gt;&lt;/span&gt; providesMessage &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;유효하지 않은 닉네임 입니다.&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;USER_400_2&quot;&lt;/span&gt;&lt;/span&gt; providesMessage &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;이미 등록된 유저입니다.&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;CORE_DOMAIN_400_2&quot;&lt;/span&gt;&lt;/span&gt; providesMessage &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;유효하지 않은 enum value 입니다&quot;&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;requestFields&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;platform&quot;&lt;/span&gt;&lt;/span&gt; isTypeOf &lt;span class=&quot;token function&quot;&gt;ENUM&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;OauthPlatform&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; whichMeans &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;oauth2 플랫폼 (naver/google)&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;/span&gt; isTypeOf STRING whichMeans &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;이메일&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;gender&quot;&lt;/span&gt;&lt;/span&gt; isTypeOf &lt;span class=&quot;token function&quot;&gt;ENUM&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Gender&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; whichMeans &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;성별 (남성/여성)&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token comment&quot;&gt;// ...&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;responseFields&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;data.id&quot;&lt;/span&gt;&lt;/span&gt; isTypeOf NUMBER whichMeans &lt;span class=&quot;token string-literal singleline&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;생성된 유저의 ID&quot;&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/aef3bc1db4f5a60566aeeb4a2aa801da/147d8/result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 44.93670886075949%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6UlEQVR42p2Sy27CMBBF8/9/1XU3XVSoBdEEguPEjzix4zwA6eJx1EVYQGBxZXtmdDxz7eRD/eJT7HEyEsdW4uQ0qtEGtRBhXSveG+jBIimNRiZKVOFQ+gZlZ1BYDTk41Ge/WjrIXUck1BkLgBicuqh68i/BZmAHexmQsEYhD9DmOsyws39LBHQEFDSmMzCX/m3YAli0GvwBUI1kg48TrAJmskAqigj895CkRhdjmeT4yf9wUHyRv5ea3Ozhnuf4TneQvV3eGIqoq1QwfG032LJDeHm7zsNjXcWvcl9EHdI3Yo2Medo/A94AvzqxFF2GgNwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;result&quot;
+        title=&quot;result&quot;
+        src=&quot;/static/aef3bc1db4f5a60566aeeb4a2aa801da/f058b/result.png&quot;
+        srcset=&quot;/static/aef3bc1db4f5a60566aeeb4a2aa801da/c26ae/result.png 158w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/6bdcf/result.png 315w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/f058b/result.png 630w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/40601/result.png 945w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/78612/result.png 1260w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/147d8/result.png 1465w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;br/&gt;
+&lt;hr/&gt;
+&lt;br/&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;kotlin-dsl-rest-docs&lt;/code&gt;의 모든 코드는 &lt;a href=&quot;https://github.com/wwan13/kotlin-dsl-rest-docs&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;깃허브 저장소&lt;/a&gt;에서 확인할 수 있습니다.&lt;br&gt;
+&lt;del&gt;스타와, contribution은 언제나 환영입니다 ~!&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Desk-Mood/deskmood-server/tree/main/deskmood-core/core-api/src/test/kotlin/org/deskmood/docs&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;deskmood 저장소&lt;/a&gt;에서 제가  &lt;code class=&quot;language-text&quot;&gt;kotlin-dsl-rest-docs&lt;/code&gt;를 어떻게 활용하고 있는지 확인하실 수 있습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[kotlin의 dsl로 spring rest docs를 개선하는 방법.]]></title><description><![CDATA[Spring에서 제공하는 API 문서 제작 도구 를 사용하다 보면 여려분은 다음과 같은 코드를 많이 접하게 될 것입니다. 흔히 볼 수 있는 코드이기에 전혀 이상함을 느끼지 못하는 분들도 계실 것입니다. 하지만 위와 같은 방법으로 직접 API…]]></description><link>https://wwan13.github.io/1009/</link><guid isPermaLink="false">https://wwan13.github.io/1009/</guid><pubDate>Sun, 22 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Spring에서 제공하는 API 문서 제작 도구 &lt;code class=&quot;language-text&quot;&gt;Spring Rest Docs&lt;/code&gt;를 사용하다 보면 여려분은 다음과 같은 코드를 많이 접하게 될 것입니다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;kotlin&quot;&gt;&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token annotation builtin&quot;&gt;@Test&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;`회원가입 API`&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
 

@@ -64,10 +64,314 @@
       
       
       
-      }</script><link rel="alternate" type="application/rss+xml" title="Gatsby Starter Lavendar RSS Feed" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=b281ed0485672128667ed80e31bf236e" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=b281ed0485672128667ed80e31bf236e"/><title data-react-helmet="true">API 문서에 오류코드 추가하기. | Dev.log</title><style id="stitches">--sxs{--sxs:0 t-jYqrXd}@media{:root,.t-jYqrXd{--colors-gray100:#f6f6f6;--colors-gray200:#ddd;--colors-gray300:#a0aec0;--colors-gray400:#68768a;--colors-gray500:#495467;--colors-gray600:#2d3748;--colors-gray700:#1a202c;--colors-white:#fff;--colors-black:#000;--colors-yellow:#ffd75e;--colors-yellowAccent:#ffa659;--colors-primary100:#edfeafc;--colors-primary200:#AFD198;--colors-primary300:#816eec;--colors-primary400:#698474;--colors-primary500:#FCF8F3;--colors-text100:var(--colors-gray300);--colors-text200:var(--colors-gray400);--colors-text300:var(--colors-gray500);--colors-text400:var(--colors-gray600);--colors-text500:var(--colors-gray700);--colors-backgroundColor:var(--colors-white);--colors-borderGray:var(--colors-gray200);--colors-borderPrimary:var(--colors-primary200);--colors-inlineCodeBackground:#F5EFE6;--colors-inlineCodeColor:#698474;--colors-link:var(--colors-primary400);--colors-titleFilterBackground:var(--colors-gray100);--colors-tagColor:var(--colors-primary400);--colors-tagFilterBackground:var(--colors-primary100);--colors-headerCircleColor:var(--colors-primary200);--colors-themeSwitchBackground:var(--colors-gray500);--colors-titleHoverColor:#6B8A7A;--sizes-contentWidth:43.75rem;--shadows-themeSymbol:var(--colors-gray400);--transitions-transitionDuration:0.2s;--transitions-transitionTiming:ease-in;--transitions-switchTransitionDuration:0.1s}}--sxs{--sxs:1 hxtZNX}@media{:root{font-family:"Pretendard", apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;text-rendering:optimizeLegibility;color-scheme:light}*{box-sizing:border-box;margin:0;padding:0}html{min-height:100vh}body{min-height:100vh;background-color:var(--colors-backgroundColor)}#___gatsby,#gatsby-focus-wrapper{min-height:100vh}a{color:inherit;text-decoration:none}h1{font-size:1.75rem}h2{font-size:1.5rem}h3{font-size:1.25rem}h4{font-size:1rem}h5{font-size:0.875rem}h6{font-size:0.75rem}hr{margin-top:0.25rem;margin-bottom:0.25rem;border:0;border-top:0.125rem solid var(--colors-borderGray)}img{display:block;margin:0 auto;max-width:100%}table{width:100%;margin-top:0.75rem;margin-bottom:0.75rem;border-collapse:collapse;line-height:1.75rem}tr{border-bottom:1px solid var(--colors-borderGray)}th{padding-top:0.75rem;padding-bottom:0.75rem}td{padding-top:0.75rem;padding-bottom:0.75rem}p{margin-top:0.75rem;margin-bottom:0.75rem;line-height:1.625}p > code[class*="language-"]{white-space:pre-wrap}blockquote{padding-left:1rem;border-left:0.25rem solid var(--colors-borderPrimary)}article{overflow-wrap:break-word}article ul,article ol{margin-left:2rem}article ul ul,article ul ol,article ol ul,article ol ol{margin-left:1.5rem}article ul li,article ol li{margin-top:0.375rem;margin-bottom:0.375rem}article ul li p,article ol li p{margin:0}article pre[class^="language-"]{border-radius:0.25rem}:not(pre) > code[class*="language-"]{color:var(--colors-inlineCodeColor);background:var(--colors-inlineCodeBackground)}}--sxs{--sxs:2 c-bpEpcJ c-dOTHtS c-hfyngW c-eoVJfr c-kYQEvi c-MUQJV c-dUGcwA c-gWMEHS c-lgXHyE c-hzyIju c-gPjxah c-kWNSBC c-bAdmeu c-erupHl c-johfxC c-eZFkoN c-bdjjIq c-hKKXhz c-kMfRO c-eWEvwx c-kcxiHV c-gTWCfY c-cUMdHX c-bGcufP}@media{.c-bpEpcJ{display:flex;min-height:100vh;color:var(--colors-text500);background-color:var(--colors-backgroundColor);transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming), background-color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-dOTHtS{display:flex;flex-direction:column;width:100%;max-width:800px;margin:0 auto;padding-right:1em;padding-left:1em}@media (min-width: 48em){.c-dOTHtS{padding:0}}.c-hfyngW{display:flex;flex-direction:column-reverse;align-items:center;width:100%;margin:0 auto;padding:2rem 0}@media (min-width: 48em){.c-hfyngW{flex-direction:row;justify-content:space-between}}.c-eoVJfr{display:flex;flex-direction:row;align-items:center;align-self:start;width:100%}@media (min-width: 48em){.c-eoVJfr{width:auto}}.c-kYQEvi{width:4rem;height:4rem;border-radius:50%;background-color:var(--colors-headerCircleColor);transition:background-color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-MUQJV{margin-left:-2.5rem}.c-MUQJV a{color:var(--colors-text400);font-weight:900;font-size:2rem;line-height:2rem;transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming);text-decoration:none}.c-dUGcwA{position:relative}.c-dUGcwA .heading-anchor{border-bottom:0}.c-dUGcwA .heading-anchor svg{fill:var(--colors-text500)}.c-gWMEHS{margin-bottom:2rem}.c-lgXHyE{font-size:2.25rem}.c-hzyIju{display:flex;align-items:center;margin-top:0.5rem;color:var(--colors-text200);font-weight:700;transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-gPjxah{margin:0}.c-kWNSBC{display:inline-block;list-style:none}.c-kWNSBC:before{margin:0 0.25rem;content:"•"}.c-bAdmeu{word-break:keep-all}.c-bAdmeu h1{margin-top:2rem;margin-bottom:1.25rem;padding-bottom:0.25rem;border-bottom:1px solid var(--colors-borderGray)}.c-bAdmeu h1 a{border-bottom:none}.c-bAdmeu h2{margin-top:1.5rem;margin-bottom:1rem;padding-bottom:0.25rem;border-bottom:1px solid var(--colors-borderGray)}.c-bAdmeu h2 a{border-bottom:none}.c-bAdmeu a{border-bottom:1px solid var(--colors-borderPrimary);color:var(--colors-link);transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming), border-bottom-color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-bAdmeu pre code{word-break:break-all;overflow-wrap:break-word}.c-bAdmeu pre,.c-bAdmeu code{font-variant-ligatures:none}.c-erupHl:before{display:block;width:100%;height:0.2rem;margin:3rem auto;background-color:var(--colors-primary200);transition:background-color var(--transitions-transitionDuration) var(--transitions-transitionTiming);content:""}.c-johfxC{display:grid;grid-template-columns:70px auto;margin-bottom:2rem;padding:1rem;border-radius:1rem;background-color:var(--colors-gray100);transition:background-color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-johfxC .profile-image{border-radius:50%;transform:translateZ(0)}.c-eZFkoN{padding-right:1rem;padding-left:1rem;color:var(--colors-text300);transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-bdjjIq{margin-top:0;margin-bottom:0.5rem;font-size:1.25rem}.c-hKKXhz{line-height:1.2;word-break:keep-all}.c-kMfRO{display:flex;gap:1em;margin-top:1em;margin-left:0}.c-eWEvwx{display:inline-block;list-style:none;transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-eWEvwx a{color:var(--colors-link)}.c-kcxiHV{margin:1rem auto}.c-gTWCfY{display:flex;flex-wrap:wrap;justify-content:space-between;margin:0;list-style:none}.c-cUMdHX{display:block;padding:0.5rem 1rem;border-radius:0.5rem;color:var(--colors-link);font-size:0.875rem}.c-bGcufP{margin-top:50px;padding-top:2rem;padding-bottom:1.5rem;color:var(--colors-text100);font-size:0.875rem;text-align:center}}</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="c-bpEpcJ"><div class="c-dOTHtS"><header class="c-hfyngW"><div class="c-eoVJfr"><div class="c-kYQEvi"></div><h1 class="c-MUQJV"><a href="/">Dev.log</a></h1></div></header><main><article itemscope="" itemType="http://schema.org/Article" class="c-dUGcwA"><header class="c-gWMEHS"><h1 itemProp="headline" class="c-lgXHyE">API 문서에 오류코드 추가하기.</h1><div class="c-hzyIju"><span>2024-09-27</span><ul class="c-gPjxah"><li class="c-kWNSBC">Tech</li></ul></div></header><br/><br/><section itemProp="articleBody" class="c-bAdmeu"></section><footer class="c-erupHl"><div class="c-johfxC"><div data-gatsby-image-wrapper="" style="width:70px;height:70px" class="gatsby-image-wrapper profile-image"><div aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear;background-color:#c8b8b8;width:70px;height:70px;position:relative"></div><picture><source type="image/avif" data-srcset="/static/df5ec31e56cc4bf5d0851173380d18e2/821ec/profile-pic.avif 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/1bb1f/profile-pic.avif 140w" sizes="70px"/><source type="image/webp" data-srcset="/static/df5ec31e56cc4bf5d0851173380d18e2/55c64/profile-pic.webp 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/b0396/profile-pic.webp 140w" sizes="70px"/><img data-gatsby-image-ssr="" layout="fixed" data-main-image="" style="opacity:0" sizes="70px" decoding="async" loading="lazy" data-src="/static/df5ec31e56cc4bf5d0851173380d18e2/caa37/profile-pic.jpg" data-srcset="/static/df5ec31e56cc4bf5d0851173380d18e2/caa37/profile-pic.jpg 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/106fb/profile-pic.jpg 140w" alt="Profile picture"/></picture><noscript><picture><source type="image/avif" srcSet="/static/df5ec31e56cc4bf5d0851173380d18e2/821ec/profile-pic.avif 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/1bb1f/profile-pic.avif 140w" sizes="70px"/><source type="image/webp" srcSet="/static/df5ec31e56cc4bf5d0851173380d18e2/55c64/profile-pic.webp 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/b0396/profile-pic.webp 140w" sizes="70px"/><img data-gatsby-image-ssr="" layout="fixed" data-main-image="" style="opacity:0" sizes="70px" decoding="async" loading="lazy" src="/static/df5ec31e56cc4bf5d0851173380d18e2/caa37/profile-pic.jpg" srcSet="/static/df5ec31e56cc4bf5d0851173380d18e2/caa37/profile-pic.jpg 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/106fb/profile-pic.jpg 140w" alt="Profile picture"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><div class="c-eZFkoN"><p class="c-bdjjIq"><strong>Taewan Kim</strong></p><p class="c-hKKXhz">안녕하세요. 주니어 백앤드 개발자 김태완 입니다.</p><ul class="c-kMfRO"><li class="c-eWEvwx"><a href="https://github.com/wwan13">GitHub</a></li><li class="c-eWEvwx"><a href="https://www.linkedin.com/in/wwan13">LinkedIn</a></li></ul></div></div></footer></article><div class="utterances"></div><nav class="c-kcxiHV"><ul class="c-gTWCfY"><li><a rel="prev" class="c-cUMdHX" href="/1009/">← <!-- -->kotlin의 dsl로 spring rest docs를 개선하는 방법.</a></li><li></li></ul></nav></main><br/><footer class="c-bGcufP">© <a href="https://github.com/wwan13">Taewan Kim</a>, Built with<!-- --> <a href="https://github.com/blurfx/gatsby-starter-lavender">gatsby-starter-lavender</a></footer></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/1010/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+      }</script><link rel="alternate" type="application/rss+xml" title="Gatsby Starter Lavendar RSS Feed" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=b281ed0485672128667ed80e31bf236e" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=b281ed0485672128667ed80e31bf236e"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=b281ed0485672128667ed80e31bf236e"/><title data-react-helmet="true">API 문서에 오류코드 추가하기. | Dev.log</title><style id="stitches">--sxs{--sxs:0 t-jYqrXd}@media{:root,.t-jYqrXd{--colors-gray100:#f6f6f6;--colors-gray200:#ddd;--colors-gray300:#a0aec0;--colors-gray400:#68768a;--colors-gray500:#495467;--colors-gray600:#2d3748;--colors-gray700:#1a202c;--colors-white:#fff;--colors-black:#000;--colors-yellow:#ffd75e;--colors-yellowAccent:#ffa659;--colors-primary100:#edfeafc;--colors-primary200:#AFD198;--colors-primary300:#816eec;--colors-primary400:#698474;--colors-primary500:#FCF8F3;--colors-text100:var(--colors-gray300);--colors-text200:var(--colors-gray400);--colors-text300:var(--colors-gray500);--colors-text400:var(--colors-gray600);--colors-text500:var(--colors-gray700);--colors-backgroundColor:var(--colors-white);--colors-borderGray:var(--colors-gray200);--colors-borderPrimary:var(--colors-primary200);--colors-inlineCodeBackground:#F5EFE6;--colors-inlineCodeColor:#698474;--colors-link:var(--colors-primary400);--colors-titleFilterBackground:var(--colors-gray100);--colors-tagColor:var(--colors-primary400);--colors-tagFilterBackground:var(--colors-primary100);--colors-headerCircleColor:var(--colors-primary200);--colors-themeSwitchBackground:var(--colors-gray500);--colors-titleHoverColor:#6B8A7A;--sizes-contentWidth:43.75rem;--shadows-themeSymbol:var(--colors-gray400);--transitions-transitionDuration:0.2s;--transitions-transitionTiming:ease-in;--transitions-switchTransitionDuration:0.1s}}--sxs{--sxs:1 hxtZNX}@media{:root{font-family:"Pretendard", apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;text-rendering:optimizeLegibility;color-scheme:light}*{box-sizing:border-box;margin:0;padding:0}html{min-height:100vh}body{min-height:100vh;background-color:var(--colors-backgroundColor)}#___gatsby,#gatsby-focus-wrapper{min-height:100vh}a{color:inherit;text-decoration:none}h1{font-size:1.75rem}h2{font-size:1.5rem}h3{font-size:1.25rem}h4{font-size:1rem}h5{font-size:0.875rem}h6{font-size:0.75rem}hr{margin-top:0.25rem;margin-bottom:0.25rem;border:0;border-top:0.125rem solid var(--colors-borderGray)}img{display:block;margin:0 auto;max-width:100%}table{width:100%;margin-top:0.75rem;margin-bottom:0.75rem;border-collapse:collapse;line-height:1.75rem}tr{border-bottom:1px solid var(--colors-borderGray)}th{padding-top:0.75rem;padding-bottom:0.75rem}td{padding-top:0.75rem;padding-bottom:0.75rem}p{margin-top:0.75rem;margin-bottom:0.75rem;line-height:1.625}p > code[class*="language-"]{white-space:pre-wrap}blockquote{padding-left:1rem;border-left:0.25rem solid var(--colors-borderPrimary)}article{overflow-wrap:break-word}article ul,article ol{margin-left:2rem}article ul ul,article ul ol,article ol ul,article ol ol{margin-left:1.5rem}article ul li,article ol li{margin-top:0.375rem;margin-bottom:0.375rem}article ul li p,article ol li p{margin:0}article pre[class^="language-"]{border-radius:0.25rem}:not(pre) > code[class*="language-"]{color:var(--colors-inlineCodeColor);background:var(--colors-inlineCodeBackground)}}--sxs{--sxs:2 c-bpEpcJ c-dOTHtS c-hfyngW c-eoVJfr c-kYQEvi c-MUQJV c-dUGcwA c-gWMEHS c-lgXHyE c-hzyIju c-gPjxah c-kWNSBC c-bAdmeu c-erupHl c-johfxC c-eZFkoN c-bdjjIq c-hKKXhz c-kMfRO c-eWEvwx c-kcxiHV c-gTWCfY c-cUMdHX c-bGcufP}@media{.c-bpEpcJ{display:flex;min-height:100vh;color:var(--colors-text500);background-color:var(--colors-backgroundColor);transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming), background-color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-dOTHtS{display:flex;flex-direction:column;width:100%;max-width:800px;margin:0 auto;padding-right:1em;padding-left:1em}@media (min-width: 48em){.c-dOTHtS{padding:0}}.c-hfyngW{display:flex;flex-direction:column-reverse;align-items:center;width:100%;margin:0 auto;padding:2rem 0}@media (min-width: 48em){.c-hfyngW{flex-direction:row;justify-content:space-between}}.c-eoVJfr{display:flex;flex-direction:row;align-items:center;align-self:start;width:100%}@media (min-width: 48em){.c-eoVJfr{width:auto}}.c-kYQEvi{width:4rem;height:4rem;border-radius:50%;background-color:var(--colors-headerCircleColor);transition:background-color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-MUQJV{margin-left:-2.5rem}.c-MUQJV a{color:var(--colors-text400);font-weight:900;font-size:2rem;line-height:2rem;transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming);text-decoration:none}.c-dUGcwA{position:relative}.c-dUGcwA .heading-anchor{border-bottom:0}.c-dUGcwA .heading-anchor svg{fill:var(--colors-text500)}.c-gWMEHS{margin-bottom:2rem}.c-lgXHyE{font-size:2.25rem}.c-hzyIju{display:flex;align-items:center;margin-top:0.5rem;color:var(--colors-text200);font-weight:700;transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-gPjxah{margin:0}.c-kWNSBC{display:inline-block;list-style:none}.c-kWNSBC:before{margin:0 0.25rem;content:"•"}.c-bAdmeu{word-break:keep-all}.c-bAdmeu h1{margin-top:2rem;margin-bottom:1.25rem;padding-bottom:0.25rem;border-bottom:1px solid var(--colors-borderGray)}.c-bAdmeu h1 a{border-bottom:none}.c-bAdmeu h2{margin-top:1.5rem;margin-bottom:1rem;padding-bottom:0.25rem;border-bottom:1px solid var(--colors-borderGray)}.c-bAdmeu h2 a{border-bottom:none}.c-bAdmeu a{border-bottom:1px solid var(--colors-borderPrimary);color:var(--colors-link);transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming), border-bottom-color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-bAdmeu pre code{word-break:break-all;overflow-wrap:break-word}.c-bAdmeu pre,.c-bAdmeu code{font-variant-ligatures:none}.c-erupHl:before{display:block;width:100%;height:0.2rem;margin:3rem auto;background-color:var(--colors-primary200);transition:background-color var(--transitions-transitionDuration) var(--transitions-transitionTiming);content:""}.c-johfxC{display:grid;grid-template-columns:70px auto;margin-bottom:2rem;padding:1rem;border-radius:1rem;background-color:var(--colors-gray100);transition:background-color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-johfxC .profile-image{border-radius:50%;transform:translateZ(0)}.c-eZFkoN{padding-right:1rem;padding-left:1rem;color:var(--colors-text300);transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-bdjjIq{margin-top:0;margin-bottom:0.5rem;font-size:1.25rem}.c-hKKXhz{line-height:1.2;word-break:keep-all}.c-kMfRO{display:flex;gap:1em;margin-top:1em;margin-left:0}.c-eWEvwx{display:inline-block;list-style:none;transition:color var(--transitions-transitionDuration) var(--transitions-transitionTiming)}.c-eWEvwx a{color:var(--colors-link)}.c-kcxiHV{margin:1rem auto}.c-gTWCfY{display:flex;flex-wrap:wrap;justify-content:space-between;margin:0;list-style:none}.c-cUMdHX{display:block;padding:0.5rem 1rem;border-radius:0.5rem;color:var(--colors-link);font-size:0.875rem}.c-bGcufP{margin-top:50px;padding-top:2rem;padding-bottom:1.5rem;color:var(--colors-text100);font-size:0.875rem;text-align:center}}</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="c-bpEpcJ"><div class="c-dOTHtS"><header class="c-hfyngW"><div class="c-eoVJfr"><div class="c-kYQEvi"></div><h1 class="c-MUQJV"><a href="/">Dev.log</a></h1></div></header><main><article itemscope="" itemType="http://schema.org/Article" class="c-dUGcwA"><header class="c-gWMEHS"><h1 itemProp="headline" class="c-lgXHyE">API 문서에 오류코드 추가하기.</h1><div class="c-hzyIju"><span>2024-09-29</span><ul class="c-gPjxah"><li class="c-kWNSBC">Tech</li></ul></div></header><br/><br/><section itemProp="articleBody" class="c-bAdmeu"><blockquote>
+<p>API documentation is a technical content deliverable, containing instructions about how to effectively use and integrate with an API.</p>
+</blockquote>
+<br/>
+<p><a href="https://swagger.io/blog/api-documentation/what-is-api-documentation-and-why-it-matters/" target="_blank" rel="nofollow noopener noreferrer">swagger</a> 에서는 API 문서를
+‘API를 효과적으로 사용하고 통합하는 방법에 대한 지침을 포함하는 기술 콘텐츠’로 API의 정보, 반환값, 요청값 등을 포함하고 있는 것으로 소개하고 있습니다.</p>
+<p>하지만 이것들 만으로는 ‘API를 사용하며 발생할 수 있는 여러 <strong>예외 상황에 대한 지침</strong>‘은 제공할 수 없습니다.</p>
+<p>서버에서 발생하는 여러 예외에 대한 분기를 클라이언트가 처리하기 위해 <code class="language-text">Error Code</code>를 반환하는 방법을 사용하곤 합니다.
+이번 포스팅에서는 제가 OAS3를 사용하는 API문서에 에러 코드를 추가한 방법에 대해 공유해 보겠습니다.</p>
+<p><em>해당 포스팅은 <a href="https://wwan13.github.io/1009/" target="_blank" rel="nofollow noopener noreferrer">이전 포스팅</a>에서 제작한 <code class="language-text">kotlin-dsl-rest-docs</code>를 개선한 것으로 위 포스팅 혹은 <a href="https://github.com/wwan13/kotlin-dsl-rest-docs" target="_blank" rel="nofollow noopener noreferrer">깃허브 저장소</a>를 참고하여 주세요.</em></p>
+<p><br/><br/></p>
+<h2 id="첫-번째-방법--모든-에러-코드를-담은-컨트롤러-추가하기" style="position:relative;">첫 번째 방법 : 모든 에러 코드를 담은 컨트롤러 추가하기<a href="#%EC%B2%AB-%EB%B2%88%EC%A7%B8-%EB%B0%A9%EB%B2%95--%EB%AA%A8%EB%93%A0-%EC%97%90%EB%9F%AC-%EC%BD%94%EB%93%9C%EB%A5%BC-%EB%8B%B4%EC%9D%80-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0" aria-label="첫 번째 방법  모든 에러 코드를 담은 컨트롤러 추가하기 permalink" class="heading-anchor after"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>처음 알게 된 방법은 모든 에러 코드를 반환하는 컨트롤러를 테스트 코드에 추가하는 방법입니다.<br>
+<em>(직접 시도한 방법이 아니기 때문에 자세한 설명은 생략하겠습니다. <a href="https://0soo.tistory.com/210" target="_blank" rel="nofollow noopener noreferrer">참고</a>)</em></p>
+<p><code class="language-text">ENUM.entries()</code> 를 그대로 호출하기에 실수로 누락할 일도 없고, 한 눈에 모든 에러 코드를 확인할 수 있다는 장점이 있습니다.</p>
+<p>하지만 저는 <strong>API별 호출시 발생 가능한 에러 코드들의 모음</strong>을 원했기 때문에, 모든 API에 대한 에러 코드의 모음인 이 방법은 적절하지 못했습니다.</p>
+<p><br/><br/></p>
+<h2 id="두-번째-방법--예외-exampleschema추가하기" style="position:relative;">두 번째 방법 : 예외 Example(Schema)추가하기<a href="#%EB%91%90-%EB%B2%88%EC%A7%B8-%EB%B0%A9%EB%B2%95--%EC%98%88%EC%99%B8-exampleschema%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0" aria-label="두 번째 방법  예외 exampleschema추가하기 permalink" class="heading-anchor after"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>두 번째 방법은 정상적인 API에 대한 문서를 제공하는 것과 동일한 방법으로 에외 케이스에 대한 테스트 코드를 작성하는 것입니다.</p>
+<div class="gatsby-highlight" data-language="kotlin"><pre class="language-kotlin"><code class="language-kotlin"><span class="token annotation builtin">@Test</span>
+<span class="token keyword">fun</span> <span class="token function">`사용자 회원 가입 API error USER_ALREADY_EXISTS`</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    every <span class="token punctuation">{</span> userService<span class="token punctuation">.</span><span class="token function">appendUser</span><span class="token punctuation">(</span><span class="token function">any</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">any</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> throws <span class="token function">CoreException</span><span class="token punctuation">(</span>ErrorType<span class="token punctuation">.</span>USER_ALREADY_EXISTS<span class="token punctuation">)</span>
+
+    <span class="token keyword">val</span> api <span class="token operator">=</span> api<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"/api/v1/user"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">requestBody</span><span class="token punctuation">(</span><span class="token function">UserAppendRequest</span><span class="token punctuation">(</span><span class="token operator">..</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">documentFor</span><span class="token punctuation">(</span>api<span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"user-sign-up-error(USER_ALREADY_EXISTS)"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">summary</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"사용자 회원 가입 API error USER_ALREADY_EXISTS"</span></span><span class="token punctuation">)</span>
+        <span class="token function">requestFields</span><span class="token punctuation">(</span>
+            <span class="token string-literal singleline"><span class="token string">"email"</span></span> isTypeOf STRING whichMeans <span class="token string-literal singleline"><span class="token string">"이메일"</span></span><span class="token punctuation">,</span>
+            <span class="token string-literal singleline"><span class="token string">"nickname"</span></span> isTypeOf STRING whichMeans <span class="token string-literal singleline"><span class="token string">"닉네임"</span></span><span class="token punctuation">,</span>
+            <span class="token operator">..</span><span class="token punctuation">.</span>
+        <span class="token punctuation">)</span>
+        <span class="token function">responseFields</span><span class="token punctuation">(</span>
+            <span class="token string-literal singleline"><span class="token string">"data.errorCode"</span></span> isTypeOf STRING whichMeans <span class="token string-literal singleline"><span class="token string">"발생한 에러 코드"</span></span><span class="token punctuation">,</span>
+            <span class="token string-literal singleline"><span class="token string">"data.errorMessage"</span></span> isTypeOf STRING whichMeans <span class="token string-literal singleline"><span class="token string">"발생한 에러 메세지"</span></span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>기존 테스트코드에 위와 같이 예외 상황을 포함하는 새로운 테스트케이스를 추가한 뒤 문서를 생성하면 다음과 같은 결과를 얻을 수 있습니다.</p>
+<br/>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8f5563f84a52a20c9ec0055d43befa37/0940f/image1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 64.55696202531645%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABkElEQVR42p2T63KkIBCFfZ2M4A0vIAKKo87ErcpW3v9dThqcH5NJdjOVH5/YFnU4nG6T5brDbxd0g0Vvx1+jjIMkErUuqCcHva3Ihx7ZHY/1v+BakcaI7jwjqf0YCzE6sF7RBn1gejCtnhYUo0UzT0hYL1H6Af59R7uOOCkBblpMrzuUn8G7DrlST4kGEq77KOjeNqirR2Yl2NCiJJdFcBpcB/QP3IST8ChI1E0LGqORNy3SrMIpL5EW1dNwJWNMCQ/KVEzzgk4PqPoOgmLIKoETI9HsAf49XHaHQ0EdLq2JJ7Dw8XbFVJLT7ithD5fyE4xyrpxB7aeQoUJDXbbXK4RzcUOhNcyFZtN7yHmOHO8ewlpyouL17slDXEQUFM5i2v/AbFvsaE4OFc1Ufz7fWKDmo65JkP9nnChDhcpQl88rpHcoyP6JQn4pSlrLuN6TlgKs+kpsSuwy2UzbBvv+hnV/hf07Y7jQ1XPqHiso8AfY94R5jV2OvxiNjVAapVQowqBrCrtp6OQaTDwH74+x+QCaTKoTDf8v7AAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="image1"
+        title="image1"
+        src="/static/8f5563f84a52a20c9ec0055d43befa37/f058b/image1.png"
+        srcset="/static/8f5563f84a52a20c9ec0055d43befa37/c26ae/image1.png 158w,
+/static/8f5563f84a52a20c9ec0055d43befa37/6bdcf/image1.png 315w,
+/static/8f5563f84a52a20c9ec0055d43befa37/f058b/image1.png 630w,
+/static/8f5563f84a52a20c9ec0055d43befa37/40601/image1.png 945w,
+/static/8f5563f84a52a20c9ec0055d43befa37/0940f/image1.png 1154w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>200을 반환하는 정상적인 반환값 아래, 400의 예외 상황을 반환하는 필드가 추가된 것을 확인할 수 있습니다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/24883eff4053f35722ce0e5b6573651c/47aef/image2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 31.0126582278481%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABG0lEQVR42o2RW0/CQBSE+S0+ULTbbrvbCy3dbRELVgnxRlQuvkiiqYBE4+8fT1sS4+XBh29ncpKdM5ttyUxDVPQ1zLgLW8U1lTdCryFo6IQN1czqRbCT+BctRhdFqpBPJlCjEZyIwnwf59NbzB5XuJzNcbN8wPViiav5ovYX93PILP0ztFUNRaqRFgWS4RCe1jikwOnsDh/vO7xuSuy2a9IXvO22WJdPKJ9XiPNB/Qr+M7A6OIXqQY6on0GQZ66EwTgMi6NN2rGc2hukbZPjoGPiiLtgjvyCS1heQIGqBxYGOMkLjM7GiE9TqHEfThDAZA6Y7cK09uy9xQWp8x1azKRsGtrUqqtShEpD6hj+cQKRUFPh/R+XPsoP8AnvZ8oB9GsCGAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="image1"
+        title="image1"
+        src="/static/24883eff4053f35722ce0e5b6573651c/f058b/image2.png"
+        srcset="/static/24883eff4053f35722ce0e5b6573651c/c26ae/image2.png 158w,
+/static/24883eff4053f35722ce0e5b6573651c/6bdcf/image2.png 315w,
+/static/24883eff4053f35722ce0e5b6573651c/f058b/image2.png 630w,
+/static/24883eff4053f35722ce0e5b6573651c/40601/image2.png 945w,
+/static/24883eff4053f35722ce0e5b6573651c/47aef/image2.png 1063w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>발생하는 예외가 여러 개인 경우 위와 같이 드롭다운을 통해 확인도 가능합니다.</p>
+<br/>
+<p>하지만 이 방법에는 치명적인 단점이 존재하였습니다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/9a721e29815b631cf287c4223c0c32b1/b5cea/invalid_examples.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 31.0126582278481%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtElEQVR42p3OzRKCIBQFYF6n/AVTwFRUKtQcJ+v9n+Wk6LRwUWOLb7gw3DOHmH5A3bRIshw8Lz5EoSBVac3z1vwnq/W026G8NSivxmYQM47oni8UZnpsW6immbRItYaXJAikhJ+nX5wRrOY7Ebq2y4lSdjlMU2uePc4XQvzAF1KA5PUF9/GBbKhAJYfjUxy90J67eBQujUCySsP0PeJyqs+i/UHbwDBeWh2ctVXA/uMzuOyEN6zuw1fIGjggAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="invalid_examples"
+        title="invalid_examples"
+        src="/static/9a721e29815b631cf287c4223c0c32b1/f058b/invalid_examples.png"
+        srcset="/static/9a721e29815b631cf287c4223c0c32b1/c26ae/invalid_examples.png 158w,
+/static/9a721e29815b631cf287c4223c0c32b1/6bdcf/invalid_examples.png 315w,
+/static/9a721e29815b631cf287c4223c0c32b1/f058b/invalid_examples.png 630w,
+/static/9a721e29815b631cf287c4223c0c32b1/40601/invalid_examples.png 945w,
+/static/9a721e29815b631cf287c4223c0c32b1/b5cea/invalid_examples.png 1140w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>Examples의 알 수 없는 정렬 조건으로 간혹 위와 같이 에러 케이스가 대표 예제로 설정되는 것이었습니다.<br>
+테스트 순서 조정, 에러 케이스의 앞에 특수문자 삽입 등 여러 방법을 시도해 보았으나 그 순서는 변하지 않았습니다.</p>
+<p>사소한 문제로 넘어갈 수 있었지만, 프론트앤드 개발자가 잘못된 예제를 옳은 예제로 혼동할 가능성이 있다고 판단하여 이 방법도 사용하지 않기로 하였습니다.</p>
+<p><br/><br/></p>
+<h2 id="마지막-방법--description의-markdown문법-지원-활용" style="position:relative;">마지막 방법 : Description의 Markdown문법 지원 활용<a href="#%EB%A7%88%EC%A7%80%EB%A7%89-%EB%B0%A9%EB%B2%95--description%EC%9D%98-markdown%EB%AC%B8%EB%B2%95-%EC%A7%80%EC%9B%90-%ED%99%9C%EC%9A%A9" aria-label="마지막 방법  description의 markdown문법 지원 활용 permalink" class="heading-anchor after"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>OAS3에는 API에 대한 자세한 설명을 더하기 위해 다음과 같은 Description 필드가 존재합니다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a65212811a3870d1a3e4c1e7067aad82/1d69c/description_example.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 16.455696202531648%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAc0lEQVR42o3MSw7CIACEYe5/AG/hJdy6dmOqlRgptEWKlD5i6K/iBVh8mcwsRuxPG7sjHC4rUlkq5TnfLXXzQpqAcgt2gj5uRcTDvbnqgGzHfFA3ntuvm78uJGykmOjHRDssdH7NtJtymu+m3cwzJoaZYh+sG+T6LsAAJAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="description_example"
+        title="description_example"
+        src="/static/a65212811a3870d1a3e4c1e7067aad82/f058b/description_example.png"
+        srcset="/static/a65212811a3870d1a3e4c1e7067aad82/c26ae/description_example.png 158w,
+/static/a65212811a3870d1a3e4c1e7067aad82/6bdcf/description_example.png 315w,
+/static/a65212811a3870d1a3e4c1e7067aad82/f058b/description_example.png 630w,
+/static/a65212811a3870d1a3e4c1e7067aad82/1d69c/description_example.png 750w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<br/>
+<p>단순 텍스트만 입력 가능한 줄 알았으나 놀랍게도 이 Description 필드에서 html과 markdown 를 모두 지원하고 있었습니다.<br>
+따라서 저는 이 필드와 마크다운을 이용해 에러 코드를 추가해 보자 하였습니다.</p>
+<br/>
+<h3 id="구현하기" style="position:relative;">구현하기<a href="#%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" aria-label="구현하기 permalink" class="heading-anchor after"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>우선 문서화 대상인 에러코드와 에러메세지를 담은 클래스 생성 뒤 kotlin-dsl-rest-docs의 컨셉에 맞게 infix 함수도 추가해 줍니다.</p>
+<div class="gatsby-highlight" data-language="kotlin"><pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">infix</span> <span class="token keyword">fun</span> String<span class="token punctuation">.</span><span class="token function">provideMessage</span><span class="token punctuation">(</span>message<span class="token operator">:</span> String<span class="token punctuation">)</span><span class="token operator">:</span> DocumentError <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">DocumentError</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// EXAMPLE_ERROR_CODE provideMessage "예시 에러 코드 입니다."</span>
+
+<span class="token keyword">data</span> <span class="token keyword">class</span> <span class="token function">DocumentError</span><span class="token punctuation">(</span>
+    <span class="token keyword">val</span> code<span class="token operator">:</span> String<span class="token punctuation">,</span>
+    <span class="token keyword">val</span> message<span class="token operator">:</span> String
+<span class="token punctuation">)</span></code></pre></div>
+<br/>
+<p>선언한 에러코드들을 Desciption에서 사용할 수 있도록 MarkdonConverter라는 유틸 함수를 작성해 줍니다.</p>
+<div class="gatsby-highlight" data-language="kotlin"><pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">object</span> MarkdownConverter <span class="token punctuation">{</span>
+
+    <span class="token keyword">fun</span> <span class="token function">convertErrors</span><span class="token punctuation">(</span>errors<span class="token operator">:</span> List<span class="token operator">&lt;</span>DocumentError<span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string-literal singleline"><span class="token string">""</span></span>"
+            |
+            |### Error Codes
+            |
+            |<span class="token operator">&lt;</span>details<span class="token operator">></span>
+            |<span class="token operator">&lt;</span>summary<span class="token operator">></span> more <span class="token operator">&lt;</span><span class="token operator">/</span>summary<span class="token operator">></span>
+            |
+            <span class="token operator">||</span>ErrorCode|ErrorMessage|
+            <span class="token operator">||</span><span class="token operator">:</span><span class="token operator">--</span><span class="token operator">-</span><span class="token operator">:</span>|<span class="token operator">:</span><span class="token operator">--</span><span class="token operator">-</span><span class="token operator">:</span>|
+            |$<span class="token punctuation">{</span>errors<span class="token punctuation">.</span><span class="token function">joinToString</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"\n"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token string-literal singleline"><span class="token string">"|</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token expression">it<span class="token punctuation">.</span>code</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">|</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token expression">it<span class="token punctuation">.</span>message</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">|"</span></span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+            |
+            |<span class="token operator">&lt;</span><span class="token operator">/</span>details<span class="token operator">></span>
+            |
+        <span class="token string-literal singleline"><span class="token string">""</span></span>"<span class="token punctuation">.</span><span class="token function">trimMargin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">fun</span> <span class="token function">join</span><span class="token punctuation">(</span>values<span class="token operator">:</span> List<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> values<span class="token punctuation">.</span><span class="token function">joinToString</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"&lt;br/>"</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<br/>
+<p>기존 <code class="language-text">summary.description</code>만 존재하던 필드에 마크다운으로 변환된 에러 코드를 추가해 줍니다.</p>
+<div class="gatsby-highlight" data-language="kotlin"><pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// ApiDocumentContext</span>
+<span class="token keyword">val</span> description<span class="token operator">:</span> String
+    <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">val</span> elements <span class="token operator">=</span> mutableListOf<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>summary<span class="token punctuation">.</span><span class="token function">hasDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> elements<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>summary<span class="token punctuation">.</span>description<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>errors<span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> elements<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>MarkdownConverter<span class="token punctuation">.</span><span class="token function">convertErrors</span><span class="token punctuation">(</span>errors<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> MarkdownConverter<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>elements<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></code></pre></div>
+<br/>
+<p>나아가 API에 포함된 ENUM을 담은 <code class="language-text">DocumentEnum</code>과, API 설명을 ul의 형식으로 할 수 있도록 <code class="language-text">DocumentGuide</code>도 추가하였습니다.</p>
+<br/>
+<p>그 결과 다음과 같이 테스트를 작성하면 필요했던 모든 정보를 담은 풍족한 API 문서가 생성되는 것을 볼 수 있습니다.</p>
+<div class="gatsby-highlight" data-language="kotlin"><pre class="language-kotlin"><code class="language-kotlin"><span class="token annotation builtin">@Test</span>
+<span class="token keyword">fun</span> <span class="token function">`사용자 회원 가입 API`</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ..</span>
+
+    <span class="token function">documentFor</span><span class="token punctuation">(</span>api<span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"user-sign-up"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">summary</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"사용자 회원 가입 API"</span></span><span class="token punctuation">)</span>
+        <span class="token function">guide</span><span class="token punctuation">(</span>
+            <span class="token string-literal singleline"><span class="token string">"사전에 호출한 oauth2 기본 프로필 조회 결과를 담아 회원가입 API를 호출해 주세요."</span></span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+        <span class="token function">containedEnums</span><span class="token punctuation">(</span>
+            <span class="token string-literal singleline"><span class="token string">"platform"</span></span> hasValues OauthPlatform<span class="token punctuation">.</span>entries<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> it<span class="token punctuation">.</span>value <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string-literal singleline"><span class="token string">"gender"</span></span> hasValues Gender<span class="token punctuation">.</span>entries<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> it<span class="token punctuation">.</span>value <span class="token punctuation">}</span>
+        <span class="token punctuation">)</span>
+        <span class="token function">expectedError</span><span class="token punctuation">(</span>
+            <span class="token string-literal singleline"><span class="token string">"USER_400_0"</span></span> providesMessage <span class="token string-literal singleline"><span class="token string">"이미 사용중인 닉네임 입니다."</span></span><span class="token punctuation">,</span>
+            <span class="token string-literal singleline"><span class="token string">"USER_400_1"</span></span> providesMessage <span class="token string-literal singleline"><span class="token string">"유효하지 않은 닉네임 입니다."</span></span><span class="token punctuation">,</span>
+            <span class="token string-literal singleline"><span class="token string">"USER_400_2"</span></span> providesMessage <span class="token string-literal singleline"><span class="token string">"이미 등록된 유저입니다."</span></span><span class="token punctuation">,</span>
+            <span class="token string-literal singleline"><span class="token string">"CORE_DOMAIN_400_2"</span></span> providesMessage <span class="token string-literal singleline"><span class="token string">"유효하지 않은 enum value 입니다"</span></span>
+        <span class="token punctuation">)</span>
+        <span class="token function">requestFields</span><span class="token punctuation">(</span>
+            <span class="token string-literal singleline"><span class="token string">"platform"</span></span> isTypeOf <span class="token function">ENUM</span><span class="token punctuation">(</span>OauthPlatform<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">)</span> whichMeans <span class="token string-literal singleline"><span class="token string">"oauth2 플랫폼 (naver/google)"</span></span><span class="token punctuation">,</span>
+            <span class="token string-literal singleline"><span class="token string">"email"</span></span> isTypeOf STRING whichMeans <span class="token string-literal singleline"><span class="token string">"이메일"</span></span><span class="token punctuation">,</span>
+            <span class="token string-literal singleline"><span class="token string">"gender"</span></span> isTypeOf <span class="token function">ENUM</span><span class="token punctuation">(</span>Gender<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">)</span> whichMeans <span class="token string-literal singleline"><span class="token string">"성별 (남성/여성)"</span></span><span class="token punctuation">,</span>
+            <span class="token comment">// ...</span>
+        <span class="token punctuation">)</span>
+        <span class="token function">responseFields</span><span class="token punctuation">(</span>
+            <span class="token string-literal singleline"><span class="token string">"data.id"</span></span> isTypeOf NUMBER whichMeans <span class="token string-literal singleline"><span class="token string">"생성된 유저의 ID"</span></span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/aef3bc1db4f5a60566aeeb4a2aa801da/147d8/result.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 44.93670886075949%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6UlEQVR42p2Sy27CMBBF8/9/1XU3XVSoBdEEguPEjzix4zwA6eJx1EVYQGBxZXtmdDxz7eRD/eJT7HEyEsdW4uQ0qtEGtRBhXSveG+jBIimNRiZKVOFQ+gZlZ1BYDTk41Ge/WjrIXUck1BkLgBicuqh68i/BZmAHexmQsEYhD9DmOsyws39LBHQEFDSmMzCX/m3YAli0GvwBUI1kg48TrAJmskAqigj895CkRhdjmeT4yf9wUHyRv5ea3Ozhnuf4TneQvV3eGIqoq1QwfG032LJDeHm7zsNjXcWvcl9EHdI3Yo2Medo/A94AvzqxFF2GgNwAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="result"
+        title="result"
+        src="/static/aef3bc1db4f5a60566aeeb4a2aa801da/f058b/result.png"
+        srcset="/static/aef3bc1db4f5a60566aeeb4a2aa801da/c26ae/result.png 158w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/6bdcf/result.png 315w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/f058b/result.png 630w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/40601/result.png 945w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/78612/result.png 1260w,
+/static/aef3bc1db4f5a60566aeeb4a2aa801da/147d8/result.png 1465w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<br/>
+<hr/>
+<br/>
+<p><code class="language-text">kotlin-dsl-rest-docs</code>의 모든 코드는 <a href="https://github.com/wwan13/kotlin-dsl-rest-docs" target="_blank" rel="nofollow noopener noreferrer">깃허브 저장소</a>에서 확인할 수 있습니다.<br>
+<del>스타와, contribution은 언제나 환영입니다 ~!</del></p>
+<p><a href="https://github.com/Desk-Mood/deskmood-server/tree/main/deskmood-core/core-api/src/test/kotlin/org/deskmood/docs" target="_blank" rel="nofollow noopener noreferrer">deskmood 저장소</a>에서 제가  <code class="language-text">kotlin-dsl-rest-docs</code>를 어떻게 활용하고 있는지 확인하실 수 있습니다.</p></section><footer class="c-erupHl"><div class="c-johfxC"><div data-gatsby-image-wrapper="" style="width:70px;height:70px" class="gatsby-image-wrapper profile-image"><div aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear;background-color:#c8b8b8;width:70px;height:70px;position:relative"></div><picture><source type="image/avif" data-srcset="/static/df5ec31e56cc4bf5d0851173380d18e2/821ec/profile-pic.avif 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/1bb1f/profile-pic.avif 140w" sizes="70px"/><source type="image/webp" data-srcset="/static/df5ec31e56cc4bf5d0851173380d18e2/55c64/profile-pic.webp 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/b0396/profile-pic.webp 140w" sizes="70px"/><img data-gatsby-image-ssr="" layout="fixed" data-main-image="" style="opacity:0" sizes="70px" decoding="async" loading="lazy" data-src="/static/df5ec31e56cc4bf5d0851173380d18e2/caa37/profile-pic.jpg" data-srcset="/static/df5ec31e56cc4bf5d0851173380d18e2/caa37/profile-pic.jpg 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/106fb/profile-pic.jpg 140w" alt="Profile picture"/></picture><noscript><picture><source type="image/avif" srcSet="/static/df5ec31e56cc4bf5d0851173380d18e2/821ec/profile-pic.avif 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/1bb1f/profile-pic.avif 140w" sizes="70px"/><source type="image/webp" srcSet="/static/df5ec31e56cc4bf5d0851173380d18e2/55c64/profile-pic.webp 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/b0396/profile-pic.webp 140w" sizes="70px"/><img data-gatsby-image-ssr="" layout="fixed" data-main-image="" style="opacity:0" sizes="70px" decoding="async" loading="lazy" src="/static/df5ec31e56cc4bf5d0851173380d18e2/caa37/profile-pic.jpg" srcSet="/static/df5ec31e56cc4bf5d0851173380d18e2/caa37/profile-pic.jpg 70w,/static/df5ec31e56cc4bf5d0851173380d18e2/106fb/profile-pic.jpg 140w" alt="Profile picture"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><div class="c-eZFkoN"><p class="c-bdjjIq"><strong>Taewan Kim</strong></p><p class="c-hKKXhz">안녕하세요. 주니어 백앤드 개발자 김태완 입니다.</p><ul class="c-kMfRO"><li class="c-eWEvwx"><a href="https://github.com/wwan13">GitHub</a></li><li class="c-eWEvwx"><a href="https://www.linkedin.com/in/wwan13">LinkedIn</a></li></ul></div></div></footer></article><div class="utterances"></div><nav class="c-kcxiHV"><ul class="c-gTWCfY"><li><a rel="prev" class="c-cUMdHX" href="/1009/">← <!-- -->kotlin의 dsl로 spring rest docs를 개선하는 방법.</a></li><li></li></ul></nav></main><br/><footer class="c-bGcufP">© <a href="https://github.com/wwan13">Taewan Kim</a>, Built with<!-- --> <a href="https://github.com/blurfx/gatsby-starter-lavender">gatsby-starter-lavender</a></footer></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/1010/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
-            window.___chunkMapping="{\"app\":[\"/app-3d66413cc455672630d8.js\"],\"component---cache-caches-gatsby-plugin-offline-app-shell-js\":[\"/component---cache-caches-gatsby-plugin-offline-app-shell-js-bdc8d390c219824aa1f2.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-78b9a84808a718be3f2b.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-0bd073d63a9845c97580.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-59652f9ba61f3acc46ef.js\"],\"component---src-templates-blog-post-tsx\":[\"/component---src-templates-blog-post-tsx-18c1f0635d0bdf1e709d.js\"]}";
+            window.___chunkMapping="{\"app\":[\"/app-3d66413cc455672630d8.js\"],\"component---cache-caches-gatsby-plugin-offline-app-shell-js\":[\"/component---cache-caches-gatsby-plugin-offline-app-shell-js-bdc8d390c219824aa1f2.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-78b9a84808a718be3f2b.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-0bd073d63a9845c97580.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-a8747d30dea7df42ad5d.js\"],\"component---src-templates-blog-post-tsx\":[\"/component---src-templates-blog-post-tsx-18c1f0635d0bdf1e709d.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="ba09ff3d7d54bd38df2e";</script><script src="/webpack-runtime-152f865584a46d55c2ae.js" async></script><script src="/framework-c7cc4731f73277b24d79.js" async></script><script src="/app-3d66413cc455672630d8.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="2ce16c89e9b3006821d4";</script><script src="/webpack-runtime-788b3b10a106ed2170cc.js" async></script><script src="/framework-c7cc4731f73277b24d79.js" async></script><script src="/app-3d66413cc455672630d8.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
